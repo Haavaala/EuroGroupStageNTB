@@ -1,31 +1,31 @@
 import React, { useEffect, useState } from "react";
 import "./Groups.css";
 
-function GroupA() {
-  const [groupA, setGroupA] = useState([]);
+function GroupB() {
+  const [groupB, setGroupB] = useState([]);
 
   //If ended = true, gjør noe
 
   //Fetching the data from the api
   useEffect(() => {
-    fetch("https://api.nifs.no/stages/691296/matches/")
+    fetch("https://api.nifs.no/stages/691297/matches/")
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched data:", data);
-        setGroupA(data);
+        setGroupB(data);
       });
   }, []);
 
   useEffect(() => {
-    console.log("Updated groupA state:", groupA);
-  }, [groupA]);
+    console.log("Updated groupA state:", groupB);
+  }, [groupB]);
 
   return (
     <div>
-      <h1>Group A</h1>
+      <h1>Group B</h1>
       <div className="matches">
-        {groupA.length > 0 ? (
-          groupA.map((match) => (
+        {groupB.length > 0 ? (
+          groupB.map((match) => (
             <div className="oneMatch" key={match.id}>
               <p>Date: {new Date(match.timestamp).toLocaleString()}</p>
               <div className="teams">
@@ -75,4 +75,4 @@ function GroupA() {
   );
 }
 
-export default GroupA;
+export default GroupB;
