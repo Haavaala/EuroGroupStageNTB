@@ -1,0 +1,41 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  display: block;
+  /* mix-blend-mode: color-burn; */
+}
+
+.teams {
+  display: flex;
+  /* flex-wrap: wrap; */
+  gap: 20px;
+  /* justify-content: center; */
+  margin-top: 20px;
+}
+
+.matches {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 10px;
+}
+
+.oneMatch {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+
+  margin-top: 10px;
+}
