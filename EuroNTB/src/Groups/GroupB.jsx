@@ -1,31 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./Groups.css";
 
-function GroupB() {
-  const [groupB, setGroupB] = useState([]);
-
-  //If ended = true, gjør noe
-
-  //Fetching the data from the api
-  useEffect(() => {
-    fetch("https://api.nifs.no/stages/691297/matches/")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Fetched data:", data);
-        setGroupB(data);
-      });
-  }, []);
-
-  useEffect(() => {
-    console.log("Updated groupA state:", groupB);
-  }, [groupB]);
+function GroupB({ matches, selectedDate }) {
+  // Filter matches by selected date
+  const filteredMatches = selectedDate
+    ? matches.filter(
+        (match) => new Date(match.timestamp).toDateString() === selectedDate
+      )
+    : matches;
 
   return (
     <div>
-      <h1>Group B</h1>
       <div className="matches">
-        {groupB.length > 0 ? (
-          groupB.map((match) => (
+        <h1>Group B</h1>
+        {filteredMatches.length > 0 ? (
+          filteredMatches.map((match) => (
             <div className="oneMatch" key={match.id}>
               <p>Date: {new Date(match.timestamp).toLocaleString()}</p>
               <div className="teams">
@@ -48,7 +37,7 @@ function GroupB() {
               </div>
               <p>
                 Result: {match.result.homeScore90} - {match.result.awayScore90}{" "}
-                {""}({match.result.homeScore45} - {match.result.awayScore45})
+                ({match.result.homeScore45} - {match.result.awayScore45})
               </p>
               <p>Stadium: {match.stadium?.name}</p>
               <p>Attendance: {match.attendance}</p>
@@ -68,7 +57,7 @@ function GroupB() {
             </div>
           ))
         ) : (
-          <p>Loading...</p>
+          <p></p>
         )}
       </div>
     </div>

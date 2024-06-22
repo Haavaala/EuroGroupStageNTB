@@ -11,7 +11,7 @@ function GroupA({ matches, selectedDate }) {
 
   return (
     <div>
-      <h1>Group A</h1>
+      <h1>Group C</h1>
       <div className="matches">
         {filteredMatches.length > 0 ? (
           filteredMatches.map((match) => (
