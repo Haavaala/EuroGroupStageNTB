@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+/* eslint-disable react/prop-types */
+import { useEffect } from "react";
 import "./DateMenu.css";
 
 function DateMenu({ dates, selectedDate, setSelectedDate }) {
@@ -12,7 +13,6 @@ function DateMenu({ dates, selectedDate, setSelectedDate }) {
 
   return (
     <div className="date-menu">
-      {/* <h2>Select Date:</h2> */}
       <div className="theDates">
         {dates.map((date) => (
           <button

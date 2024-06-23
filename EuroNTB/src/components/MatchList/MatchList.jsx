@@ -1,16 +1,18 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { MapPin, Users, Tv, Timer } from "lucide-react";
-import "./Groups.css";
+import "./MatchList.css";
 
-function GroupE({ matches, selectedDate }) {
+function Group({ groupName, matches, selectedDate }) {
   const [currentTime, setCurrentTime] = useState(new Date());
 
+  //   Update the time to see if there are any ongoing matches every minute, if there are, the match will be marked as ongoing
   useEffect(() => {
-    const timer = setInterval(() => setCurrentTime(new Date()), 60000); // Update every minute
+    const timer = setInterval(() => setCurrentTime(new Date()), 60000);
     return () => clearInterval(timer);
   }, []);
 
-  // Filter matches by selected date
+  //   Show only the matches from the selected date
   const filteredMatches = selectedDate
     ? matches.filter(
         (match) => new Date(match.timestamp).toDateString() === selectedDate
@@ -20,13 +22,20 @@ function GroupE({ matches, selectedDate }) {
   return (
     <div>
       <div className="matches">
-        {filteredMatches.length > 0 ? <h1 tabIndex={0}>Group E</h1> : <p></p>}
+        {/* Checking if there are any matches in the group, if there is, display the group name */}
+        {filteredMatches.length > 0 ? (
+          <h1 tabIndex={0}>{groupName}</h1>
+        ) : (
+          <p></p>
+        )}
 
+        {/* Only display the matches from the selected date if there are any  */}
         {filteredMatches.length > 0 ? (
           filteredMatches.map((match) => {
-            // Check if match is ongoing based on current time
             const matchTime = new Date(match.timestamp);
+            // See if the match has ended
             const isEnded = match.liveFeeds?.some((feed) => feed.ended);
+            // See if the match is ongoing
             const isOngoing =
               !isEnded &&
               currentTime >= matchTime &&
@@ -39,7 +48,7 @@ function GroupE({ matches, selectedDate }) {
                 }`}
                 key={match.id}
               >
-                {/* Header section of the scoreboard */}
+                {/* The scoreboard header with the status of the match and which round */}
                 <div className="matchHeader" tabIndex={0}>
                   <p className="when">
                     <Timer />
@@ -51,7 +60,7 @@ function GroupE({ matches, selectedDate }) {
                   </p>
                   <p>Round: {match.round}</p>
                 </div>
-                {/* Information about the whole game */}
+                {/* Display the teams and the result of the match */}
                 <div className="wholeMatch">
                   <div className="teams">
                     <div
@@ -95,7 +104,7 @@ function GroupE({ matches, selectedDate }) {
                     </div>
                   </div>
                   <hr />
-                  {/* Information about stadium and livefeed */}
+                  {/* Displaying the stadium, attendance, TV channel and reporter */}
                   <div className="matchInfo">
                     <div className="stadiumInfo">
                       <div className="stadium">
@@ -137,7 +146,6 @@ function GroupE({ matches, selectedDate }) {
                     ) : null}
                   </div>
                   <hr />
-                  {/* The reporter of the match */}
                   <div
                     className="reporter"
                     tabIndex={0}
@@ -166,4 +174,4 @@ function GroupE({ matches, selectedDate }) {
   );
 }
 
-export default GroupE;
+export default Group;

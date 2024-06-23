@@ -19,10 +19,6 @@ hr {
   margin-top: 10px;
 }
 
-p {
-  /* color: black; */
-}
-
 .result {
   display: flex;
   flex-direction: column;

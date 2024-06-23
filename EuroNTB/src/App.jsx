@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
-import Group from "./components/Groups/Group";
+import MatchList from "./components/MatchList/MatchList";
 import DateMenu from "./components/DateMenu/DateMenu";
 
+// URLs for the different groups
 const groupURLs = {
   A: "https://api.nifs.no/stages/691296/matches/",
   B: "https://api.nifs.no/stages/691297/matches/",
@@ -17,48 +18,51 @@ function App() {
   const [dates, setDates] = useState([]);
   const [selectedDate, setSelectedDate] = useState("");
 
-  const sortDates = (datesArray) => {
-    return datesArray.sort((a, b) => new Date(a) - new Date(b));
-  };
+  // Sort the dates in ascending order
+  const sortDates = (datesArray) =>
+    datesArray.sort((a, b) => new Date(a) - new Date(b));
 
+  // Fetch the data for each group and set the state
   useEffect(() => {
     const fetchGroupData = async (group, url) => {
-      const res = await fetch(url);
-      const data = await res.json();
-      setGroupData((prevData) => ({ ...prevData, [group]: data }));
-      const uniqueDates = Array.from(
-        new Set(data.map((match) => new Date(match.timestamp).toDateString()))
-      );
-      setDates((prevDates) =>
-        sortDates(Array.from(new Set([...prevDates, ...uniqueDates])))
-      );
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        setGroupData((prevData) => ({ ...prevData, [group]: data }));
+
+        const uniqueDates = Array.from(
+          new Set(data.map((match) => new Date(match.timestamp).toDateString()))
+        );
+        setDates((prevDates) =>
+          sortDates(Array.from(new Set([...prevDates, ...uniqueDates])))
+        );
+      } catch (error) {
+        console.error(`Failed to fetch data for group ${group}:`, error);
+      }
     };
 
-    for (const [group, url] of Object.entries(groupURLs)) {
-      fetchGroupData(group, url);
-    }
+    Object.entries(groupURLs).forEach(([group, url]) =>
+      fetchGroupData(group, url)
+    );
   }, []);
 
   return (
-    <>
-      <main>
-        <div>
-          <DateMenu
-            dates={dates}
-            selectedDate={selectedDate}
-            setSelectedDate={setSelectedDate}
-          />
-          {Object.entries(groupURLs).map(([group]) => (
-            <Group
-              key={group}
-              groupName={`Group ${group}`}
-              matches={groupData[group] || []}
-              selectedDate={selectedDate}
-            />
-          ))}
-        </div>
-      </main>
-    </>
+    <main>
+      <h1>Euro 2024 Group Stage</h1>
+      <DateMenu
+        dates={dates}
+        selectedDate={selectedDate}
+        setSelectedDate={setSelectedDate}
+      />
+      {Object.keys(groupURLs).map((group) => (
+        <MatchList
+          key={group}
+          groupName={`Group ${group}`}
+          matches={groupData[group] || []}
+          selectedDate={selectedDate}
+        />
+      ))}
+    </main>
   );
 }
 

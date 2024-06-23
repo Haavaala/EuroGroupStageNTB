@@ -16,10 +16,17 @@ main {
   background-color: var(--background);
   color: var(--white);
   width: 100%;
-  /* padding: 20px; */
+  padding-top: 20px;
   min-height: 100vh;
 }
 
 p {
   color: var(--white);
+}
+
+h1 {
+  color: var(--white);
+  margin-top: 0;
+  text-align: center;
+  padding: 20px;
 }
