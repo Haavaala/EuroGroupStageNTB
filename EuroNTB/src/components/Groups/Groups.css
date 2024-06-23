@@ -161,14 +161,8 @@ h1 {
   margin-top: 10px;
 }
 
-.oneMatch.ongoing .result {
-  background-color: green;
-  color: white;
-}
-
 .oneMatch.ended .matchHeader p:first-child {
   font-weight: bold;
-  /* color: red; */
 }
 
 .oneMatch.ended .wholeMatch {

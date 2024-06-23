@@ -20,7 +20,7 @@ function GroupF({ matches, selectedDate }) {
   return (
     <div>
       <div className="matches">
-        {filteredMatches.length > 0 ? <h1>Group F</h1> : <p></p>}
+        {filteredMatches.length > 0 ? <h1 tabIndex={0}>Group F</h1> : <p></p>}
 
         {filteredMatches.length > 0 ? (
           filteredMatches.map((match) => {
@@ -40,7 +40,7 @@ function GroupF({ matches, selectedDate }) {
                 key={match.id}
               >
                 {/* Header section of the scoreboard */}
-                <div className="matchHeader">
+                <div className="matchHeader" tabIndex={0}>
                   <p className="when">
                     <Timer />
                     {isEnded
@@ -54,7 +54,11 @@ function GroupF({ matches, selectedDate }) {
                 {/* Information about the whole game */}
                 <div className="wholeMatch">
                   <div className="teams">
-                    <div className="homeTeam">
+                    <div
+                      className="homeTeam"
+                      tabIndex={0}
+                      aria-label={match.homeTeam?.name}
+                    >
                       <img
                         className="logo"
                         src={match.homeTeam?.logo.url}
@@ -62,14 +66,26 @@ function GroupF({ matches, selectedDate }) {
                       />
                       <p>{match.homeTeam?.name}</p>
                     </div>
-                    <p className="result">
+                    <p
+                      className="result"
+                      tabIndex={0}
+                      aria-label={`Final score: ${match.result.homeScore90} - ${match.result.awayScore90}`}
+                    >
                       {match.result.homeScore90} - {match.result.awayScore90}
-                      <div className="break">
+                      <div
+                        className="break"
+                        tabIndex={0}
+                        aria-label={`half time score: ${match.result.homeScore45} - ${match.result.awayScore45}`}
+                      >
                         ({match.result.homeScore45} - {match.result.awayScore45}
                         )
                       </div>
                     </p>
-                    <div className="awayTeam">
+                    <div
+                      className="awayTeam"
+                      tabIndex={0}
+                      aria-label={match.awayTeam?.name}
+                    >
                       <img
                         className="logo"
                         src={match.awayTeam?.logo.url}
@@ -84,15 +100,31 @@ function GroupF({ matches, selectedDate }) {
                     <div className="stadiumInfo">
                       <div className="stadium">
                         <MapPin />
-                        <p>{match.stadium?.name}</p>
+                        <p
+                          tabIndex={0}
+                          aria-label={`Stadium: ${match.stadium?.name}`}
+                        >
+                          {match.stadium?.name}
+                        </p>
                       </div>
                       <div className="attendance">
                         <Users size={24} />
-                        <p>{match.attendance}</p>
+                        <p
+                          tabIndex={0}
+                          aria-label={`Attendance: ${match.attendance}`}
+                        >
+                          {match.attendance}
+                        </p>
                       </div>
                     </div>
                     {match.coveredLive ? (
-                      <div className="liveInfo">
+                      <div
+                        className="liveInfo"
+                        tabIndex={0}
+                        aria-label={`TV channel: ${match.tvChannels
+                          ?.map((channel) => channel.name)
+                          .join(", ")}`}
+                      >
                         <>
                           <Tv />
                           <p>
@@ -106,7 +138,13 @@ function GroupF({ matches, selectedDate }) {
                   </div>
                   <hr />
                   {/* The reporter of the match */}
-                  <div className="reporter">
+                  <div
+                    className="reporter"
+                    tabIndex={0}
+                    aria-label={`Reporter: ${match.liveFeeds
+                      ?.map((feed) => feed.user.name)
+                      .join(", ")}}`}
+                  >
                     Reporter:{" "}
                     {match.liveFeeds ? (
                       <p>
