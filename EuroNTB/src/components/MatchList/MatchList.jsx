@@ -36,7 +36,7 @@ function Group({ groupName, matches, selectedDate }) {
             const matchTime = new Date(match.timestamp);
             // See if the match has ended
             const isEnded = match.liveFeeds?.some((feed) => feed.ended);
-            // See if the match is ongoing
+            // See if the match is ongoing, (If the match starting time is the same as the current time and 90 minutes from the starting time)
             const isOngoing =
               !isEnded &&
               currentTime >= matchTime &&
