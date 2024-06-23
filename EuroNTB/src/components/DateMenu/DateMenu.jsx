@@ -4,7 +4,7 @@ import "./DateMenu.css";
 function DateMenu({ dates, selectedDate, setSelectedDate }) {
   return (
     <div className="date-menu">
-      <h2>Select Date:</h2>
+      {/* <h2>Select Date:</h2> */}
       <div className="theDates">
         {dates.map((date) => (
           <button

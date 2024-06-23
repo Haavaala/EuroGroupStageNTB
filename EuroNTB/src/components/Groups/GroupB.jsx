@@ -1,4 +1,4 @@
-import React from "react";
+import { MapPin, Users, Tv } from "lucide-react";
 import "./Groups.css";
 
 function GroupB({ matches, selectedDate }) {
@@ -12,48 +12,73 @@ function GroupB({ matches, selectedDate }) {
   return (
     <div>
       <div className="matches">
+        {filteredMatches.length > 0 ? <h1>Group B</h1> : <p></p>}
+
         {filteredMatches.length > 0 ? (
           filteredMatches.map((match) => (
             <div className="oneMatch" key={match.id}>
-              <h1>Group B</h1>
-              <p>Date: {new Date(match.timestamp).toLocaleString()}</p>
-              <div className="teams">
-                <div className="homeTeam">
-                  <p>{match.homeTeam?.name}</p>
-                  <img
-                    className="logo"
-                    src={match.homeTeam?.logo.url}
-                    alt={match.homeTeam?.name}
-                  />
+              <div className="matchHeader">
+                <p>{new Date(match.timestamp).toLocaleString()}</p>
+                <p>Round: {match.round}</p>
+              </div>
+              <div className="wholeMatch">
+                <div className="teams">
+                  <div className="homeTeam">
+                    <img
+                      className="logo"
+                      src={match.homeTeam?.logo.url}
+                      alt={match.homeTeam?.name}
+                    />
+                    <p>{match.homeTeam?.name}</p>
+                  </div>
+                  <p className="result">
+                    {match.result.homeScore90} - {match.result.awayScore90}
+                    <div className="break">
+                      ({match.result.homeScore45} - {match.result.awayScore45})
+                    </div>
+                  </p>
+                  <div className="awayTeam">
+                    <img
+                      className="logo"
+                      src={match.awayTeam?.logo.url}
+                      alt={match.awayTeam?.name}
+                    />
+                    <p>{match.awayTeam?.name}</p>
+                  </div>
                 </div>
-                <div className="awayTeam">
-                  <p>{match.awayTeam?.name}</p>
-                  <img
-                    className="logo"
-                    src={match.awayTeam?.logo.url}
-                    alt={match.awayTeam?.name}
-                  />
+                <hr />
+                <div className="matchInfo">
+                  <div className="stadiumInfo">
+                    <div className="stadium">
+                      <MapPin />
+                      <p>{match.stadium?.name}</p>
+                    </div>
+                    <div className="attendance">
+                      <Users size={24} />
+                      <p>{match.attendance}</p>
+                    </div>
+                  </div>
+                  {match.coveredLive ? (
+                    <div className="liveInfo">
+                      <>
+                        <Tv />
+                        <p>
+                          {match.tvChannels
+                            ?.map((channel) => channel.name)
+                            .join(", ")}
+                        </p>
+                      </>
+                    </div>
+                  ) : null}
+                </div>
+                <hr />
+                <div className="reporter">
+                  Reporter:{" "}
+                  {match.liveFeeds ? (
+                    <p>{match.liveFeeds?.map((user) => user.user.name)}</p>
+                  ) : null}
                 </div>
               </div>
-              <p>
-                Result: {match.result.homeScore90} - {match.result.awayScore90}{" "}
-                ({match.result.homeScore45} - {match.result.awayScore45})
-              </p>
-              <p>Stadium: {match.stadium?.name}</p>
-              <p>Attendance: {match.attendance}</p>
-              <p>Round: {match.round}</p>
-              {match.coveredLive ? (
-                <p>
-                  TV Channels:{" "}
-                  {match.tvChannels?.map((channel) => channel.name).join(", ")}
-                </p>
-              ) : null}
-              <p>
-                {match.homeTeam.clubs?.map((name) => name.teamPhoto).join(", ")}
-              </p>
-              {match.liveFeeds ? (
-                <p>{match.liveFeeds?.map((user) => user.user.name)}</p>
-              ) : null}
             </div>
           ))
         ) : (

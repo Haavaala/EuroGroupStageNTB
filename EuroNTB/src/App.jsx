@@ -114,19 +114,23 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <DateMenu
-        dates={dates}
-        selectedDate={selectedDate}
-        setSelectedDate={setSelectedDate}
-      />
-      <GroupA matches={groupA} selectedDate={selectedDate} />
-      <GroupB matches={groupB} selectedDate={selectedDate} />
-      <GroupC matches={groupC} selectedDate={selectedDate} />
-      <GroupD matches={groupD} selectedDate={selectedDate} />
-      <GroupE matches={groupE} selectedDate={selectedDate} />
-      <GroupF matches={groupF} selectedDate={selectedDate} />
-    </div>
+    <>
+      <main>
+        <div>
+          <DateMenu
+            dates={dates}
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
+          />
+          <GroupA matches={groupA} selectedDate={selectedDate} />
+          <GroupB matches={groupB} selectedDate={selectedDate} />
+          <GroupC matches={groupC} selectedDate={selectedDate} />
+          <GroupD matches={groupD} selectedDate={selectedDate} />
+          <GroupE matches={groupE} selectedDate={selectedDate} />
+          <GroupF matches={groupF} selectedDate={selectedDate} />
+        </div>
+      </main>
+    </>
   );
 }
 
