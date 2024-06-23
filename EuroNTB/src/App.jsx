@@ -48,7 +48,9 @@ function App() {
 
   return (
     <main>
-      <h1>Euro 2024 Group Stage</h1>
+      <div className="header">
+        <h1>Euro 2024 Group Stage</h1>
+      </div>
       <DateMenu
         dates={dates}
         selectedDate={selectedDate}
