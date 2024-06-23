@@ -1,8 +1,12 @@
-# React + Vite
+This is a website for displaying the scores of the matches in the group stage of the Euros 2024.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+To run the project:
 
-Currently, two official plugins are available:
+1. "Cd" to the correct directory
+2. NPM install in the terminal
+3. NPM run dev in the terminal
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The components forlder contains the components of the project, in this case, the datemenu and the scoreboards
+Each folder inside the components folder contains a jsx file for structure and functionality, as well as a css file for styling that specific component
+
+The app.jsx file is fetching the URLs and sending data to the components
