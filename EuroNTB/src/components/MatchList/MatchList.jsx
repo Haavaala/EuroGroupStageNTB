@@ -23,6 +23,7 @@ function Group({ groupName, matches, selectedDate }) {
     <div>
       <div className="matches">
         {/* Checking if there are any matches in the group, if there is, display the group name */}
+        {/* Tabindex is to make it focusable, Aria-label is to make it accessible for screen readers  */}
         {filteredMatches.length > 0 ? (
           <h1 tabIndex={0}>{groupName}</h1>
         ) : (
