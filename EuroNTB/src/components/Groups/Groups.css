@@ -103,15 +103,15 @@ h1 {
   align-items: flex-start;
   width: 100%;
   margin-top: 10px;
-  position: relative; /* Allows absolute positioning of children */
+  position: relative;
 }
 
 .liveInfo {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  align-items: flex-start;
-  position: absolute; /* Positions it within the nearest positioned ancestor */
+  align-items: center;
+  position: absolute;
   top: 0;
   right: 0;
   gap: 5px;
@@ -127,7 +127,7 @@ h1 {
   justify-content: flex-start;
   align-items: flex-start;
   gap: 10px;
-  width: 50%; /* Adjusted to ensure it takes up remaining space */
+  width: 50%;
 }
 
 .stadium,
@@ -144,6 +144,14 @@ h1 {
   color: black;
 }
 
+.when {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+}
+
 .reporter {
   display: flex;
   flex-direction: row;
@@ -151,4 +159,23 @@ h1 {
   align-items: center;
   gap: 10px;
   margin-top: 10px;
+}
+
+.oneMatch.ongoing .result {
+  background-color: green;
+  color: white;
+}
+
+.oneMatch.ended .matchHeader p:first-child {
+  font-weight: bold;
+  /* color: red; */
+}
+
+.oneMatch.ended .wholeMatch {
+  background-color: var(--finished);
+}
+
+.oneMatch.ongoing .matchHeader {
+  background-color: green;
+  color: white;
 }
