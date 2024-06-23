@@ -1,7 +1,15 @@
+:root {
+  --background: #242038;
+  --secondary: #725ac1;
+  --teritary: #8d86c9;
+  --gray: #cac4ce;
+  --white: #f7ece1;
+}
+
 * {
-  background-color: rgb(11, 11, 63);
+  background-color: var(--background);
 }
 
 p {
-  color: white;
+  color: var(--white);
 }

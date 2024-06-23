@@ -11,11 +11,11 @@ function GroupA({ matches, selectedDate }) {
 
   return (
     <div>
-      <h1>Group A</h1>
       <div className="matches">
         {filteredMatches.length > 0 ? (
           filteredMatches.map((match) => (
             <div className="oneMatch" key={match.id}>
+              <h1>Group A</h1>
               <p>Date: {new Date(match.timestamp).toLocaleString()}</p>
               <div className="teams">
                 <div className="homeTeam">

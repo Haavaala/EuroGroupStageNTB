@@ -1,7 +1,7 @@
 import React from "react";
 import "./Groups.css";
 
-function GroupB({ matches, selectedDate }) {
+function GroupE({ matches, selectedDate }) {
   // Filter matches by selected date
   const filteredMatches = selectedDate
     ? matches.filter(
@@ -12,10 +12,10 @@ function GroupB({ matches, selectedDate }) {
   return (
     <div>
       <div className="matches">
-        <h1>Group B</h1>
         {filteredMatches.length > 0 ? (
           filteredMatches.map((match) => (
             <div className="oneMatch" key={match.id}>
+              <h1>Group E</h1>
               <p>Date: {new Date(match.timestamp).toLocaleString()}</p>
               <div className="teams">
                 <div className="homeTeam">
@@ -64,4 +64,4 @@ function GroupB({ matches, selectedDate }) {
   );
 }
 
-export default GroupB;
+export default GroupE;
